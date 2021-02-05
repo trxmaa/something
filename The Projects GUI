@@ -1,0 +1,566 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Main = Instance.new("TextLabel")
+local Teleports = Instance.new("TextLabel")
+local Misc = Instance.new("TextLabel")
+local MainScrolling = Instance.new("ScrollingFrame")
+local Fly = Instance.new("TextButton")
+local Speed = Instance.new("TextButton")
+local NoClip = Instance.new("TextButton")
+local InfHit = Instance.new("TextButton")
+local TeleportsScrolling = Instance.new("ScrollingFrame")
+local TeleportToAK = Instance.new("TextButton")
+local TeleportToBat = Instance.new("TextButton")
+local TeleportToCapone = Instance.new("TextButton")
+local TeleportToTakis = Instance.new("TextButton")
+local TeleportToMilitaryVest = Instance.new("TextButton")
+local TeleportToTurnIn = Instance.new("TextButton")
+local MiscScrolling = Instance.new("ScrollingFrame")
+local CyAdmin = Instance.new("TextButton")
+local A6D = Instance.new("TextButton")
+local EUGUI = Instance.new("TextButton")
+local Frame_2 = Instance.new("Frame")
+local Main_2 = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+
+Frame.Parent = ScreenGui
+Frame.Active = true
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BackgroundTransparency = 0.150
+Frame.BorderColor3 = Color3.fromRGB(198, 174, 51)
+Frame.BorderSizePixel = 4
+Frame.Position = UDim2.new(0.0656249821, 0, 0.505363464, 0)
+Frame.Selectable = true
+Frame.Size = UDim2.new(0, 555, 0, 232)
+Frame.Draggable = true
+
+
+
+Main.Name = "Main"
+Main.Parent = Frame
+Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Main.BackgroundTransparency = 0.500
+Main.BorderColor3 = Color3.fromRGB(198, 174, 51)
+Main.BorderSizePixel = 2
+Main.Position = UDim2.new(0.0533079952, 0, 0.119995333, 0)
+Main.Size = UDim2.new(0, 142, 0, 36)
+Main.Font = Enum.Font.SourceSans
+Main.Text = "Main"
+Main.TextColor3 = Color3.fromRGB(198, 174, 51)
+Main.TextSize = 20.000
+Main.TextWrapped = true
+
+Teleports.Name = "Teleports"
+Teleports.Parent = Frame
+Teleports.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Teleports.BackgroundTransparency = 0.500
+Teleports.BorderColor3 = Color3.fromRGB(198, 174, 51)
+Teleports.BorderSizePixel = 2
+Teleports.Position = UDim2.new(0.359614342, 0, 0.119995378, 0)
+Teleports.Size = UDim2.new(0, 155, 0, 36)
+Teleports.Font = Enum.Font.SourceSans
+Teleports.Text = "Teleports"
+Teleports.TextColor3 = Color3.fromRGB(198, 174, 51)
+Teleports.TextSize = 20.000
+Teleports.TextWrapped = true
+
+Misc.Name = "Misc"
+Misc.Parent = Frame
+Misc.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Misc.BackgroundTransparency = 0.500
+Misc.BorderColor3 = Color3.fromRGB(198, 174, 51)
+Misc.BorderSizePixel = 2
+Misc.Position = UDim2.new(0.691145778, 0, 0.119995333, 0)
+Misc.Size = UDim2.new(0, 142, 0, 36)
+Misc.Font = Enum.Font.SourceSans
+Misc.Text = "Misc"
+Misc.TextColor3 = Color3.fromRGB(198, 174, 51)
+Misc.TextSize = 20.000
+Misc.TextWrapped = true
+
+MainScrolling.Name = "MainScrolling"
+MainScrolling.Parent = Frame
+MainScrolling.Active = true
+MainScrolling.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainScrolling.BorderColor3 = Color3.fromRGB(198, 174, 51)
+MainScrolling.BorderSizePixel = 2
+MainScrolling.Position = UDim2.new(0.0900900885, 0, 0.336488813, 0)
+MainScrolling.Size = UDim2.new(0, 100, 0, 128)
+MainScrolling.CanvasSize = UDim2.new(0, 0, 1, 2)
+MainScrolling.ScrollBarThickness = 0
+
+Fly.Name = "Fly"
+Fly.Parent = MainScrolling
+Fly.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Fly.BorderColor3 = Color3.fromRGB(198, 174, 51)
+Fly.Position = UDim2.new(0.150000006, 0, 0.365708381, 0)
+Fly.Size = UDim2.new(0, 70, 0, 30)
+Fly.Font = Enum.Font.SourceSans
+Fly.Text = "Fly"
+Fly.TextColor3 = Color3.fromRGB(198, 174, 51)
+Fly.TextSize = 14.000
+Fly.MouseButton1Down:connect(function()
+	local LP = game.Players.LocalPlayer
+	local Mouse = LP:GetMouse()
+	toggler = false
+
+	FLYING = false
+	iyflyspeed = 2
+	function sFLY()
+
+		repeat wait() until LP and LP.Character and LP.Character:FindFirstChild('HumanoidRootPart') and LP.Character:FindFirstChild('Humanoid')
+		game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+		repeat wait() until Mouse
+		local T = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+		local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+		local SPEED = 0
+
+		local function FLY()
+			FLYING = true
+			local BG = Instance.new('BodyGyro', T)
+			local BV = Instance.new('BodyVelocity', T)
+			BG.P = 9e4
+			BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+			BG.cframe = T.CFrame
+			BV.velocity = Vector3.new(0, 0.1, 0)
+			BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+			spawn(function()
+				repeat wait()
+
+					if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+						SPEED = 50
+					elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+						SPEED = 0
+					end
+					if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+						BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+						lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+					elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+						BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+					else
+						BV.velocity = Vector3.new(0, 0.1, 0)
+					end
+					BG.cframe = workspace.CurrentCamera.CoordinateFrame
+				until not FLYING
+				CONTROL = {F = 0, B = 0, L = 0, R = 0}
+				lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+				SPEED = 0
+				BG:destroy()
+				BV:destroy()
+			end)
+		end
+		Mouse.KeyDown:connect(function(KEY)
+			if KEY:lower() == 'w' then
+				CONTROL.F = iyflyspeed
+			elseif KEY:lower() == 's' then
+				CONTROL.B = -iyflyspeed
+			elseif KEY:lower() == 'a' then
+				CONTROL.L = -iyflyspeed 
+			elseif KEY:lower() == 'd' then 
+				CONTROL.R = iyflyspeed
+			end
+		end)
+		Mouse.KeyUp:connect(function(KEY)
+			if KEY:lower() == 'w' then
+				CONTROL.F = 0
+			elseif KEY:lower() == 's' then
+				CONTROL.B = 0
+			elseif KEY:lower() == 'a' then
+				CONTROL.L = 0
+			elseif KEY:lower() == 'd' then
+				CONTROL.R = 0
+			end
+		end)
+		FLY()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+	end
+
+
+	function NOFLY()
+		FLYING = false
+	end
+
+	function startflying()
+		game.Players.LocalPlayer.PlayerGui.LocalScript.Disabled = true
+		wait()
+		sFLY()
+		wait(0.1)
+		game.Players.LocalPlayer.PlayerGui.LocalScript.Disabled = false
+		local Float = Instance.new('Part', game.Players.LocalPlayer.Character)
+		Float.Name = 'Float'
+		Float.Transparency = 1
+		Float.Size = Vector3.new(6,1,6)
+		Float.Anchored = true
+	end
+
+	Mouse.KeyDown:Connect(function(key)
+		if key == "h" then
+
+			if not toggler then
+				toggler = true
+				startflying()
+			elseif toggler then
+				toggler = false
+				NOFLY()
+				if game.Players.LocalPlayer.Character then
+					if game.Players.LocalPlayer.Character:FindFirstChild("Float") then
+						game.Players.LocalPlayer.Character:FindFirstChild("Float"):Destroy()
+					end
+				end
+			end
+
+		end
+	end)
+end)
+Speed.Name = "Speed"
+Speed.Parent = MainScrolling
+Speed.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Speed.BorderColor3 = Color3.fromRGB(198, 174, 51)
+Speed.Position = UDim2.new(0.150000006, 0, 0.201614261, 0)
+Speed.Size = UDim2.new(0, 70, 0, 30)
+Speed.Font = Enum.Font.SourceSans
+Speed.Text = "Speed"
+Speed.TextColor3 = Color3.fromRGB(198, 174, 51)
+Speed.TextSize = 14.000
+Speed.MouseButton1Down:connect(function()
+	local Players = game:service('Players')
+	local Player = Players.LocalPlayer
+
+	local userInput = game:service('UserInputService')
+	local runService = game:service('RunService')
+
+	repeat wait() until Player.Character
+
+	local Character = Player.Character
+	local pHum = Character:WaitForChild('Humanoid')
+	local humRoot = Character:WaitForChild('HumanoidRootPart')
+
+	local Multiplier = 1.4
+
+	userInput.InputBegan:connect(function(Key)
+		if Key.KeyCode == Enum.KeyCode.LeftBracket then
+			Multiplier = Multiplier + 0.1
+			print(Multiplier)
+			wait(0.2)
+			while userInput:IsKeyDown(Enum.KeyCode.LeftBracket) do
+				wait()
+				Multiplier = Multiplier + 0.1
+				print(Multiplier)
+			end
+		end
+
+		if Key.KeyCode == Enum.KeyCode.RightBracket then
+			Multiplier = Multiplier - 0.1
+			print(Multiplier)
+			wait(0.2)
+			while userInput:IsKeyDown(Enum.KeyCode.RightBracket) do
+				wait()
+				Multiplier = Multiplier - 0.1
+				print(Multiplier)
+			end
+		end
+	end)
+
+	runService.Stepped:connect(function()
+		if userInput:IsKeyDown(Enum.KeyCode.LeftShift) then
+			humRoot.CFrame = humRoot.CFrame + pHum.MoveDirection * Multiplier
+		end
+	end)
+end)
+NoClip.Name = "NoClip"
+NoClip.Parent = MainScrolling
+NoClip.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+NoClip.BorderColor3 = Color3.fromRGB(198, 174, 51)
+NoClip.Position = UDim2.new(0.150000006, 0, 0.0277067665, 0)
+NoClip.Size = UDim2.new(0, 70, 0, 30)
+NoClip.Font = Enum.Font.SourceSans
+NoClip.Text = "NoClip"
+NoClip.TextColor3 = Color3.fromRGB(198, 174, 51)
+NoClip.TextSize = 14.000
+NoClip.MouseButton1Down:connect(function()
+	game:GetService('RunService').Stepped:connect(function()
+		if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+			game.Players.LocalPlayer.Character.Head.CanCollide = false
+			game.Players.LocalPlayer.Character.Torso.CanCollide = false
+			game.Players.LocalPlayer.Character["Left Leg"].CanCollide = false
+			game.Players.LocalPlayer.Character["Right Leg"].CanCollide = false
+		else
+			if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+				game.Players.LocalPlayer.Character.Head.CanCollide = false
+				game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
+				game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
+				game.Players.LocalPlayer.Character.LowerLeftLeg.CanCollide = false
+				game.Players.LocalPlayer.Character.UpperLeftLeg.CanCollide = false
+				game.Players.LocalPlayer.Character.UpperLeftArm.CanCollide = false
+				game.Players.LocalPlayer.Character.LowerLeftArm.CanCollide = false
+				game.Players.LocalPlayer.Character.LeftHand.CanCollide = false
+				game.Players.LocalPlayer.Character.LeftFoot.CanCollide = false
+				game.Players.LocalPlayer.Character.LowerRightLeg.CanCollide = false
+				game.Players.LocalPlayer.Character.UpperRightLeg.CanCollide = false
+				game.Players.LocalPlayer.Character.UpperRightArm.CanCollide = false
+				game.Players.LocalPlayer.Character.LowerRightArm.CanCollide = false
+				game.Players.LocalPlayer.Character.RightFoot.CanCollide = false
+				game.Players.LocalPlayer.Character.RightHand.CanCollide = false
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+			end
+		end
+	end)
+end)
+InfHit.Name = "Inf Hit"
+InfHit.Parent = MainScrolling
+InfHit.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+InfHit.BorderColor3 = Color3.fromRGB(198, 174, 51)
+InfHit.Position = UDim2.new(0.150000006, 0, 0.551053226, 0)
+InfHit.Size = UDim2.new(0, 70, 0, 30)
+InfHit.Font = Enum.Font.SourceSans
+InfHit.Text = "Inf Hit"
+InfHit.TextColor3 = Color3.fromRGB(198, 174, 51)
+InfHit.TextSize = 14.000
+InfHit.MouseButton1Down:connect(function()
+	game.Players.LocalPlayer.Character.DescendantAdded:Connect(function(v)
+		if v.Name == "StaminaCD" then
+			wait()
+			v:Destroy()
+		end
+	end)
+
+	local plr = game.Players.LocalPlayer
+	local char = plr.Character or plr.CharacterAdded:Wait()
+
+	char.DescendantAdded:Connect(function(v)
+		if v.Name == "Executeable" then
+			wait()
+			v:Destroy()
+		end
+	end)
+
+	local plr = game.Players.LocalPlayer
+
+	local char = plr.Character or plr.CharacterAdded:Wait()
+
+	char.DescendantAdded:Connect(function(v)
+		if v.Name == "Attacking" then
+			wait()
+			v:Destroy()
+		end
+	end)
+end)
+TeleportsScrolling.Name = "TeleportsScrolling"
+TeleportsScrolling.Parent = Frame
+TeleportsScrolling.Active = true
+TeleportsScrolling.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TeleportsScrolling.BorderColor3 = Color3.fromRGB(198, 174, 51)
+TeleportsScrolling.BorderSizePixel = 2
+TeleportsScrolling.Position = UDim2.new(0.40900901, 0, 0.336488813, 0)
+TeleportsScrolling.Size = UDim2.new(0, 100, 0, 128)
+TeleportsScrolling.CanvasSize = UDim2.new(0, 0, 1, 30)
+TeleportsScrolling.ScrollBarThickness = 0
+
+TeleportToAK.Name = "TeleportToAK"
+TeleportToAK.Parent = TeleportsScrolling
+TeleportToAK.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TeleportToAK.BorderColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToAK.Position = UDim2.new(0.140000001, 0, 0.0290998258, 0)
+TeleportToAK.Size = UDim2.new(0, 72, 0, 29)
+TeleportToAK.Font = Enum.Font.SourceSans
+TeleportToAK.Text = "AK"
+TeleportToAK.TextColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToAK.TextSize = 14.000
+TeleportToAK.MouseButton1Down:connect(function()
+	-- teleport to cheaper AK
+	local L = game:GetService("Players").LocalPlayer
+	local R = game:GetService("RunService")
+	local C = L.Character
+	local LastPosition = C.HumanoidRootPart.CFrame
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1982.37268, 224.714615, -602.957825, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	wait(2)
+	C.HumanoidRootPart.CFrame = LastPosition
+	print (LastPosition)
+end)
+
+TeleportToBat.Name = "TeleportToBat"
+TeleportToBat.Parent = TeleportsScrolling
+TeleportToBat.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TeleportToBat.BorderColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToBat.Position = UDim2.new(0.140000001, 0, 0.178702071, 0)
+TeleportToBat.Size = UDim2.new(0, 72, 0, 29)
+TeleportToBat.Font = Enum.Font.SourceSans
+TeleportToBat.Text = "Bat"
+TeleportToBat.TextColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToBat.TextSize = 14.000
+TeleportToBat.MouseButton1Down:connect(function()
+	-- teleport to Bat
+	local L = game:GetService("Players").LocalPlayer
+	local R = game:GetService("RunService")
+	local C = L.Character
+	local LastPosition = C.HumanoidRootPart.CFrame
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2001.81238, 227.614609, -591.172913, 0.0675042197, 1.21120731e-08, 0.997719228, 1.68982339e-07, 1, -2.35728557e-08, -09771228, 1.70188187e-07, 0.0675042197)
+	wait(2)
+	C.HumanoidRootPart.CFrame = LastPosition
+	print (LastPosition)
+end)
+TeleportToCapone.Name = "TeleportToCapone"
+TeleportToCapone.Parent = TeleportsScrolling
+TeleportToCapone.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TeleportToCapone.BorderColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToCapone.Position = UDim2.new(0.140000001, 0, 0.329564124, 0)
+TeleportToCapone.Size = UDim2.new(0, 72, 0, 29)
+TeleportToCapone.Font = Enum.Font.SourceSans
+TeleportToCapone.Text = "Capone"
+TeleportToCapone.TextColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToCapone.TextSize = 14.000
+TeleportToCapone.MouseButton1Down:Connect(function()
+	-- teleport to Capone
+	local L = game:GetService("Players").LocalPlayer
+	local R = game:GetService("RunService")
+	local C = L.Character
+	local LastPosition = C.HumanoidRootPart.CFrame
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(227.943939, 265.625977, 281.594666, -0.999525547, 0, 0.0308133084, 0, 1, 0, -0.0308133084, 0, -0.999525547)
+	wait(2)
+	C.HumanoidRootPart.CFrame = LastPosition
+	print (LastPosition)
+end)
+TeleportToTakis.Name = "TeleportToTakis"
+TeleportToTakis.Parent = TeleportsScrolling
+TeleportToTakis.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TeleportToTakis.BorderColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToTakis.Position = UDim2.new(0.140000001, 0, 0.538793087, 0)
+TeleportToTakis.Size = UDim2.new(0, 72, 0, 29)
+TeleportToTakis.Font = Enum.Font.SourceSans
+TeleportToTakis.Text = "Takis"
+TeleportToTakis.TextColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToTakis.TextSize = 14.000
+TeleportToTakis.MouseButton1Down:connect(function()
+	-- teleport to takis
+	local L = game:GetService("Players").LocalPlayer
+	local R = game:GetService("RunService")
+	local C = L.Character
+	local LastPosition = C.HumanoidRootPart.CFrame
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-235.230392, 224.814606, -845.424927, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+	wait(2)
+	C.HumanoidRootPart.CFrame = LastPosition
+	print (LastPosition)
+end)
+
+	
+TeleportToMilitaryVest.Name = "TeleportToMilitaryVest"
+TeleportToMilitaryVest.Parent = TeleportsScrolling
+TeleportToMilitaryVest.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TeleportToMilitaryVest.BorderColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToMilitaryVest.Position = UDim2.new(0.140000001, 0, 0.685344756, 0)
+TeleportToMilitaryVest.Size = UDim2.new(0, 72, 0, 29)
+TeleportToMilitaryVest.Font = Enum.Font.SourceSans
+TeleportToMilitaryVest.Text = "Military Vest"
+TeleportToMilitaryVest.TextColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToMilitaryVest.TextSize = 14.000
+TeleportToMilitaryVest.MouseButton1Down:connect(function()
+	-- teleport to military vest
+	local L = game:GetService("Players").LocalPlayer
+	local R = game:GetService("RunService")
+	local C = L.Character
+	local LastPosition = C.HumanoidRootPart.CFrame
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-604.701477, 227.690186, -912.746155, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	wait(2)
+	C.HumanoidRootPart.CFrame = LastPosition
+	print (LastPosition)
+end)
+TeleportToTurnIn.Name = "TeleportToTurnIn"
+TeleportToTurnIn.Parent = TeleportsScrolling
+TeleportToTurnIn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TeleportToTurnIn.BorderColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToTurnIn.Position = UDim2.new(0.140000001, 0, 0.831896484, 0)
+TeleportToTurnIn.Size = UDim2.new(0, 72, 0, 29)
+TeleportToTurnIn.Font = Enum.Font.SourceSans
+TeleportToTurnIn.Text = "Turn In Heist"
+TeleportToTurnIn.TextColor3 = Color3.fromRGB(198, 174, 51)
+TeleportToTurnIn.TextSize = 14.000
+TeleportToTurnIn.MouseButton1Down:Connect(function()
+	-- teleport to Heist Turn In
+	local L = game:GetService("Players").LocalPlayer
+	local R = game:GetService("RunService")
+	local C = L.Character
+	local LastPosition = C.HumanoidRootPart.CFrame
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-299.452972, 245.77562, -1168.67749, -1.1920929e-07, 0, -1.00000012, 0, 1, 0, 1.00000012, 0, -1.1920929e-07)
+	wait(2)
+	C.HumanoidRootPart.CFrame = LastPosition
+	print (LastPosition)
+end)
+MiscScrolling.Name = "MiscScrolling"
+MiscScrolling.Parent = Frame
+MiscScrolling.Active = true
+MiscScrolling.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MiscScrolling.BorderColor3 = Color3.fromRGB(198, 174, 51)
+MiscScrolling.BorderSizePixel = 2
+MiscScrolling.Position = UDim2.new(0.727927923, 0, 0.336488813, 0)
+MiscScrolling.Size = UDim2.new(0, 100, 0, 128)
+MiscScrolling.CanvasSize = UDim2.new(0, 0, 0, 0)
+
+CyAdmin.Name = "CyAdmin"
+CyAdmin.Parent = MiscScrolling
+CyAdmin.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+CyAdmin.BorderColor3 = Color3.fromRGB(198, 174, 51)
+CyAdmin.Position = UDim2.new(0.140000001, 0, 0.0568426251, 0)
+CyAdmin.Size = UDim2.new(0, 72, 0, 29)
+CyAdmin.Font = Enum.Font.SourceSans
+CyAdmin.Text = "CyAdmin"
+CyAdmin.TextColor3 = Color3.fromRGB(198, 174, 51)
+CyAdmin.TextSize = 14.000
+CyAdmin.MouseButton1Down:Connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Not-Cyrus/Streets-Script/master/Streets%20Admin.lua",true))()
+end)
+A6D.Name = "A6D"
+A6D.Parent = MiscScrolling
+A6D.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+A6D.BorderColor3 = Color3.fromRGB(198, 174, 51)
+A6D.Position = UDim2.new(0.140000001, 0, 0.361530125, 0)
+A6D.Size = UDim2.new(0, 72, 0, 29)
+A6D.Font = Enum.Font.SourceSans
+A6D.Text = "A6D"
+A6D.TextColor3 = Color3.fromRGB(198, 174, 51)
+A6D.TextSize = 14.000
+A6D.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/trxmaa/something/main/A6D'))()
+end)
+EUGUI.Name = "EU GUI"
+EUGUI.Parent = MiscScrolling
+EUGUI.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+EUGUI.BorderColor3 = Color3.fromRGB(198, 174, 51)
+EUGUI.Position = UDim2.new(0.140000001, 0, 0.650592625, 0)
+EUGUI.Size = UDim2.new(0, 72, 0, 29)
+EUGUI.Font = Enum.Font.SourceSans
+EUGUI.Text = "EU GUI"
+EUGUI.TextColor3 = Color3.fromRGB(198, 174, 51)
+EUGUI.TextSize = 14.000
+EUGUI.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/trxmaa/something/main/EU%20GUI'))()
+end)
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame_2.BackgroundTransparency = 0.150
+Frame_2.BorderColor3 = Color3.fromRGB(198, 174, 51)
+Frame_2.BorderSizePixel = 4
+Frame_2.Position = UDim2.new(0, 0, 0.997400463, 0)
+Frame_2.Size = UDim2.new(0, 555, 0, 73)
+
+Main_2.Name = "Main"
+Main_2.Parent = Frame_2
+Main_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Main_2.BackgroundTransparency = 1.000
+Main_2.BorderColor3 = Color3.fromRGB(198, 174, 51)
+Main_2.BorderSizePixel = 2
+Main_2.Position = UDim2.new(0, 0, 0.242904127, 0)
+Main_2.Size = UDim2.new(0, 555, 0, 36)
+Main_2.Font = Enum.Font.SourceSans
+Main_2.Text = "Built for The Projects, GUI by Dxxxq (SS_ and CCO_)"
+Main_2.TextColor3 = Color3.fromRGB(198, 174, 51)
+Main_2.TextSize = 25.000
+Main_2.TextWrapped = true
